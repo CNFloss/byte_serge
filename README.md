@@ -40,7 +40,7 @@ canvas.height = 1152;
 ```
 
 This is so that you can do calculations with larger spaces but still have
-the canvas application fit on the users screen. The following is a qoute
+the canvas application fit on the users screen. The following is a quote
 from the HTML5 specification of the canvas element explaining this further.
 
 > Using CSS pixels to describe the size of a rendering context's output bitmap does not mean that when rendered the canvas will cover an equivalent area
