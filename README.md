@@ -20,7 +20,7 @@ multiple larger than the CSS size
 
 **Example:**
 
-### CSS
+#### CSS
 
 ```css
 /* 16:9 ratio with 64px as base unit */
@@ -30,7 +30,7 @@ multiple larger than the CSS size
 }
 ```
 
-### JS
+#### JS
 
 ```js
 const canvas = document.getElementById("#canvas");
@@ -41,7 +41,7 @@ canvas.height = 1152;
 
 This is so that you can do calculations with larger spaces but still have
 the canvas application fit on the users screen. The following is a qoute
-from the HTML5 specification of the canvas element
+from the HTML5 specification of the canvas element explaining this further.
 
 > Using CSS pixels to describe the size of a rendering context's output bitmap does not mean that when rendered the canvas will cover an equivalent area
 > in CSS pixels. CSS pixels are reused for ease of integration with CSS features, such as text layout.
