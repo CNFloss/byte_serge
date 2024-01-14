@@ -13,6 +13,8 @@ export function BYTE_SERGE(canvas, input, tick_func, settings) {
   this.CANVAS.width = DEFAULT_WIDTH;
   this.CANVAS.height = DEFAULT_HEIGHT;
 
+  this._scaleCanvasToFitContainer();
+
   this.OFFSCREEN_CANVAS = new OffscreenCanvas(
     this.CANVAS.width * 10,
     this.CANVAS.height * 10
@@ -77,4 +79,23 @@ BYTE_SERGE.prototype.RENDER = function () {};
 BYTE_SERGE.prototype.PROCESS = function (totalTime, deltaTime) {};
 BYTE_SERGE.prototype.INPUT_READ = function () {
   return { _direction: 0, _intensity: 0 };
+};
+
+BYTE_SERGE.prototype._scaleCanvasToFitContainer = function () {
+  const container = this.CANVAS.parentElement;
+  console.log(container);
+  const containerWidth = container.offsetWidth;
+  const containerHeight = container.offsetHeight;
+  const aspectRatio = this.CANVAS.width / this.CANVAS.height;
+
+  let displayWidth = containerWidth;
+  let displayHeight = displayWidth / aspectRatio;
+
+  if (displayHeight > containerHeight) {
+    displayHeight = containerHeight;
+    displayWidth = displayHeight * aspectRatio;
+  }
+
+  this.CANVAS.style.width = `${displayWidth}px`;
+  this.CANVAS.style.height = `${displayHeight}px`;
 };
