@@ -40,7 +40,21 @@ function main() {
     }
   );
 
-  const CAMERA = new Camera2D(BYTE_SERGE_APP, "assets/img/tree.jpeg");
+  // Define a render callback function
+  function renderCallback() {
+    // Your existing rendering logic goes here
+    // For example, drawing your BYTE_SERGE_APP's objects
+    BYTE_SERGE_APP.RENDER();
+  }
+
+  // Create a Camera2D instance with the necessary configuration
+  const cameraConfig = {
+    canvas: BYTE_SERGE_APP.CANVAS,
+    renderCallback: renderCallback,
+    imageSrc: "assets/img/tree.jpeg", // Assuming you have a background image
+  };
+
+  const CAMERA = new Camera2D(cameraConfig);
 
   // Create and intialize application's user object
   BYTE_SERGE_APP.VISIBLE_MOVING_OBJECTS.push(
