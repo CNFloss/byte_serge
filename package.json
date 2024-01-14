@@ -2,14 +2,19 @@
   "name": "byte_serge",
   "version": "1.0.0",
   "description": "This is a library for making HTML5 canvas applications.",
-  "main": "index.js",
+  "source": "index.html",
   "scripts": {
-    "doc": "jsdoc -c jsdoc.json"
+    "clean": "rimraf ./dist",
+    "doc": "jsdoc -c jsdoc.json",
+    "start": "parcel",
+    "build": "npm run clean && parcel build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jsdoc": "^4.0.2"
+    "jsdoc": "^4.0.2",
+    "parcel": "latest",
+    "rimraf": "^5.0.5"
   }
 }

@@ -72,7 +72,7 @@ section.stats > article {
   background: white;
   width: 100%;
   height: 100%;
-  max-height: calc(576 / 3) px;
+  max-height: calc(576px / 3) px;
   overflow-y: scroll;
   padding: 0 10px 0 10px;
 }

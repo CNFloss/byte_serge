@@ -1,7 +1,9 @@
 /node_modules
 
 /docs
+/dist
 
+/.parcel-cache
 # dotenv environment variables file
 .env
 .env.test
