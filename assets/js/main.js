@@ -11,7 +11,7 @@ import { R_DEGEE_15 } from "./Tools/constants.js";
 import { BYTE_SERGE } from "./ApplicationParts/byteSerge.js";
 import { updateStat, registerUIComponents } from "./ApplicationParts/ui.js";
 import { InputController } from "./ApplicationParts/inputController.js";
-import { physical2DObject } from "./Objects2D/physical2DObject.js";
+import { PhysicalVisible2DObject } from "./Objects2D/physicalVisible2DObject.js";
 import { physicsClock } from "./ApplicationParts/physicsClock.js";
 import { Camera2D } from "./ApplicationParts/camera2D.js";
 
@@ -55,7 +55,7 @@ function main() {
 
   // Create and intialize application's user object
   BYTE_SERGE_APP.VISIBLE_MOVING_OBJECTS.push(
-    new physical2DObject(
+    new PhysicalVisible2DObject(
       BYTE_SERGE_APP.CANVAS.width / 2,
       BYTE_SERGE_APP.CANVAS.height / 2,
       64,

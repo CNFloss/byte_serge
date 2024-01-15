@@ -1,7 +1,7 @@
-import { visible2DObject } from "./visible2DObject.js";
+import { Base2DObject } from "./base2DObject.js";
 
-export function physical2DObject(x, y, radius, mass) {
-  visible2DObject.call(this, x, y, radius);
+export function Physical2DObject(x, y, radius, mass) {
+  Base2DObject.call(this, x, y, radius);
   this.mass = mass;
   this.forceX = 0;
   this.forceY = 0;
@@ -13,14 +13,15 @@ export function physical2DObject(x, y, radius, mass) {
   this.previousY = y;
 }
 
-physical2DObject.prototype = Object.create(visible2DObject.prototype);
+Physical2DObject.prototype = Object.create(Base2DObject.prototype);
+Physical2DObject.prototype.constructor = Physical2DObject;
 
-physical2DObject.prototype.applyForces = function (forceX, forceY) {
+Physical2DObject.prototype.applyForces = function (forceX, forceY) {
   this.forceX = forceX;
   this.forceY = forceY;
 };
 
-physical2DObject.prototype.integrate = function (t, dt) {
+Physical2DObject.prototype.integrate = function (t, dt) {
   this.accelerateX = this.forceX;
   this.accelerateY = this.forceY;
 
@@ -33,7 +34,7 @@ physical2DObject.prototype.integrate = function (t, dt) {
   this.y += this.velocityY * dt;
 };
 
-physical2DObject.prototype.saveState = function () {
+Physical2DObject.prototype.saveState = function () {
   // @ts-ignore
   this.previousX = this.x;
   // @ts-ignore

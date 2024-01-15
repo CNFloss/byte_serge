@@ -1,25 +1,28 @@
 import { DIRECTION_MAP } from "../Tools/constants.js";
 import { radiansToDegrees } from "../Tools/utillities.js";
+import { Base2DObject } from "./base2DObject.js";
 
-export function visible2DObject(x, y, radius) {
-  this.x = x || 0;
-  this.y = y || 0;
+export function Visible2DObject(x, y, radius) {
+  Base2DObject.call(this, x, y);
   this.radius = radius || 10;
   this.rotationR = DIRECTION_MAP.NORTH;
   this.rotationD = 90;
   this.oldPositions = [];
   this.renderState = {
-    x: this.x,
-    y: this.y,
+    x: x,
+    y: y,
   };
 }
 
-visible2DObject.prototype.rotate = function (rotation) {
+Visible2DObject.prototype = Object.create(Base2DObject.prototype);
+Visible2DObject.prototype.constructor = Visible2DObject;
+
+Visible2DObject.prototype.rotate = function (rotation) {
   this.rotationR += rotation;
   this.rotationD = radiansToDegrees(this.rotationR);
 };
 
-visible2DObject.prototype.debugDraw = function (CTX) {
+Visible2DObject.prototype.debugDraw = function (CTX) {
   this.oldPositions.push({
     x: this.renderState.x,
     y: this.renderState.y,
@@ -44,11 +47,11 @@ visible2DObject.prototype.debugDraw = function (CTX) {
   CTX.strokeStyle = "black";
 };
 
-visible2DObject.prototype.setRenderState = function (x, y) {
+Visible2DObject.prototype.setRenderState = function (x, y) {
   this.renderState = { x: x, y: y };
 };
 
-visible2DObject.prototype.trajectoryDebugDraw = function (CTX, delta) {
+Visible2DObject.prototype.trajectoryDebugDraw = function (CTX, delta) {
   for (let i = 0; i < this.oldPositions.length; i++) {
     let { x, y } = this.oldPositions[i];
     CTX.beginPath();
