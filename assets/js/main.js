@@ -42,12 +42,9 @@ function main() {
 
   // Define a render callback function
   function renderCallback() {
-    // Your existing rendering logic goes here
-    // For example, drawing your BYTE_SERGE_APP's objects
     BYTE_SERGE_APP.RENDER();
   }
 
-  // Create a Camera2D instance with the necessary configuration
   const cameraConfig = {
     canvas: BYTE_SERGE_APP.CANVAS,
     renderCallback: renderCallback,

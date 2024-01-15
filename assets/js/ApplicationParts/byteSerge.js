@@ -15,11 +15,13 @@ export function BYTE_SERGE(canvas, input, tick_func, settings) {
 
   this._scaleCanvasToFitContainer();
 
+  /*
   this.OFFSCREEN_CANVAS = new OffscreenCanvas(
     this.CANVAS.width * 10,
     this.CANVAS.height * 10
   );
   this.OFFSCREEN_CTX = this.OFFSCREEN_CANVAS.getContext("2d", { alpha: false });
+  */
 
   this.CTX.lineWidth = DEFAULT_LINE_WIDTH;
   this.CTX.fillStyle = DEFAULT_FILL_COLOR;
