@@ -6,7 +6,7 @@ import {
   degreesToRadians,
   findV2AtDistanceAndRadians,
   radiansToDegrees,
-} from "./Tools/utillities.js";
+} from "./Tools/Math/math.js";
 import { R_DEGEE_15 } from "./Tools/constants.js";
 import { BYTE_SERGE } from "./ApplicationParts/byteSerge.js";
 import { updateStat, registerUIComponents } from "./ApplicationParts/ui.js";

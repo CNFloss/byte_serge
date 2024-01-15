@@ -1,4 +1,4 @@
-import { degreesToRadians } from "./utillities.js";
+import { degreesToRadians } from "./Math/math.js";
 
 export const R_DEGEE_15 = degreesToRadians(15);
 export const R_DEGEE_45 = degreesToRadians(45);

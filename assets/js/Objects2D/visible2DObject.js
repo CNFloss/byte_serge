@@ -1,5 +1,5 @@
 import { DIRECTION_MAP } from "../Tools/constants.js";
-import { radiansToDegrees } from "../Tools/utillities.js";
+import { radiansToDegrees } from "../Tools/Math/math.js";
 import { Base2DObject } from "./base2DObject.js";
 
 export function Visible2DObject(x, y, radius) {

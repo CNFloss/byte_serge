@@ -1,5 +1,6 @@
-import { radiansToDegrees, test_value } from "../Tools/utillities.js";
+import { test_value } from "../Tools/utillities.js";
 import { DIRECTION_MAP } from "../Tools/constants.js";
+import { radiansToDegrees } from "../Tools/Math/math.js";
 
 export function InputController(intensity, direction) {
   this._direction = direction || DIRECTION_MAP["EAST"];

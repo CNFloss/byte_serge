@@ -1,4 +1,5 @@
-import { mapElementsToObj, roundFloat } from "../Tools/utillities.js";
+import { mapElementsToObj } from "../Tools/utillities.js";
+import { roundFloat } from "../Tools/Math/math.js";
 
 // Create UI Hydrator
 export function updateStat(elem, obj) {
