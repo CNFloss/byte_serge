@@ -3,8 +3,7 @@ import { radiansToDegrees } from "../Tools/Math/math.js";
 import { Base2DObject } from "./base2DObject.js";
 
 export function Visible2DObject(x, y, radius) {
-  Base2DObject.call(this, x, y);
-  this.radius = radius || 10;
+  Base2DObject.call(this, x, y, radius);
   this.rotationR = DIRECTION_MAP.NORTH;
   this.rotationD = 90;
   this.oldPositions = [];
@@ -33,6 +32,7 @@ Visible2DObject.prototype.debugDraw = function (CTX) {
   CTX.rotate(-this.rotationR);
   CTX.beginPath();
   CTX.moveTo(0, 0);
+  // @ts-ignore
   CTX.arc(0, 0, this.radius, 0, 2 * Math.PI);
   CTX.stroke();
 
@@ -40,6 +40,7 @@ Visible2DObject.prototype.debugDraw = function (CTX) {
   CTX.strokeStyle = "blue";
   CTX.beginPath();
   CTX.moveTo(0, 0);
+  // @ts-ignore
   CTX.lineTo(this.radius, 0);
   CTX.stroke();
 
