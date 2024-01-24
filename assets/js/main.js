@@ -7,6 +7,12 @@ import {
   findV2AtDistanceAndRadians,
   radiansToDegrees,
 } from "./Tools/Math/math.js";
+import {
+  loadImages,
+  resizeImages,
+  mergeImages,
+  findFilesInFolder,
+} from "./Tools/utillities.js";
 import { R_DEGEE_15 } from "./Tools/constants.js";
 import { BYTE_SERGE } from "./ApplicationParts/byteSerge.js";
 import { updateStat, registerUIComponents } from "./ApplicationParts/ui.js";
@@ -25,6 +31,13 @@ document.addEventListener("DOMContentLoaded", (e) => {
 });
 
 function main() {
+  const folderPath = "../assets/img/Nature Pack Vol 1/Ground Tiles and Decals";
+  const pattern = new RegExp(".+_\\d+_tile\\.png", "i"); // User-defined pattern
+
+  findFilesInFolder(folderPath, pattern).then((files) => loadImages(files));
+
+  //const fileNames = ['path/to/image1.png', 'path/to/image2.png', ...];
+
   /* 
     CREATE AND INITIALIZE APPLICATION
   */
