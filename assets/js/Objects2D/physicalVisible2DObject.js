@@ -3,6 +3,7 @@ import { Visible2DObject } from "./visible2DObject.js";
 
 export function PhysicalVisible2DObject(x, y, radius, mass) {
   Physical2DObject.call(this, x, y, radius, mass);
+  Visible2DObject.call(this, x, y, radius);
 }
 
 PhysicalVisible2DObject.prototype = Object.create(Physical2DObject.prototype);
