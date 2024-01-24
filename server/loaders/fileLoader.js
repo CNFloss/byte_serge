@@ -46,14 +46,21 @@ const commands = {
     console.log("Close Command");
     rl.close();
   },
-  // Add other commands here
+  fuzzyFolderFind: (options) => {
+    const directory = options.args[0];
+    const regexStr = new RegExp(options.args[1]);
+    findFilesInFolder(directory, regexStr).then((files) => {
+      console.log(files, ": HELLO!!!");
+      files.forEach((file) => console.log(file));
+    });
+  },
 };
 
 program.option("-v, --verbose", "Enable verbose output");
 
 program.parse(process.argv);
 
-rl.setPrompt("Your-CLI> ");
+rl.setPrompt("GWiz_> ");
 rl.prompt();
 
 rl.on("line", (line) => {
