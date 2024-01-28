@@ -1,4 +1,4 @@
-export function DataGrid(rows, columns, depth, quadSize) {
+export function DataGrid(rows, columns, depth, quadSize, mapTiles) {
   this.sections = new Array(depth);
 
   for (let z = 0; z < depth; z++) {
@@ -10,6 +10,7 @@ export function DataGrid(rows, columns, depth, quadSize) {
           x: x * quadSize,
           y: y * quadSize,
           z: z * quadSize,
+          graphic: mapTiles[z][y][x],
         };
       }
     }
@@ -18,6 +19,7 @@ export function DataGrid(rows, columns, depth, quadSize) {
   console.log(this.sections);
 }
 
+/*
 DataGrid.prototype.getVisibleSections = function (camera) {
   // Determine which sections are visible based on camera's position
 };
@@ -29,3 +31,4 @@ DataGrid.prototype.loadSection = function (sectionKey) {
 DataGrid.prototype.unloadSection = function (sectionKey) {
   // Unload a section by its key
 };
+*/

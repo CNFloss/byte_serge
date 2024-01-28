@@ -32,35 +32,14 @@ export function mapElementsToObj(...elements) {
   return ELEMENTS;
 }
 
-export function mergeImages(images, cellWidth, cellHeight) {
-  const gridSize = Math.ceil(Math.sqrt(images.length));
-  const canvas = document.createElement("canvas");
-  canvas.width = gridSize * cellWidth;
-  canvas.height = gridSize * cellHeight;
-  const ctx = canvas.getContext("2d");
-
-  images.forEach((image, index) => {
-    const x = (index % gridSize) * cellWidth;
-    const y = Math.floor(index / gridSize) * cellHeight;
-    // @ts-ignore
-    ctx.drawImage(image, x, y, cellWidth, cellHeight);
-  });
-
-  return canvas;
-}
-
-export function resizeImages(images, width, height) {
-  return images.map((image) => {
-    console.log(image.width, width, image.height, height);
-    if (image.width === width && image.height === height) {
-      return image;
+export async function fetchFile(url) {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
-    const canvas = document.createElement("canvas");
-    canvas.width = width;
-    canvas.height = height;
-    const ctx = canvas.getContext("2d");
-    // @ts-ignore
-    ctx.drawImage(image, 0, 0, width, height);
-    return canvas;
-  });
+    return response.text();
+  } catch (error) {
+    console.error("Error fetching file:", error);
+  }
 }

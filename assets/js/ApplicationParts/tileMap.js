@@ -1,9 +1,11 @@
+import { DataGrid } from "./dataGrid.js";
+
 export function TileMap() {
   this.mapCellSize = { width: 0, height: 0 };
   this.mapSize = { width: 0, height: 0 };
   this.tilesheet = null;
-  this.tilesheetData = [];
-  this.gameMap = [];
+  this.tilesheetData = {};
+  this.gameMap = null;
 }
 
 TileMap.prototype.setMapCellSize = function (width, height) {
@@ -24,14 +26,17 @@ TileMap.prototype.setTilesheetData = function (data) {
   this.tilesheetData = data;
 };
 
-TileMap.prototype.setGameMap = function (map) {
-  if (
-    map.length !== this.mapSize.height ||
-    map.some((row) => row.length !== this.mapSize.width)
-  ) {
-    throw new Error("Invalid game map size.");
+TileMap.prototype.setTilesheetDataFromJSON = function (jsonData) {
+  try {
+    // Assuming jsonData is a JSON string
+    this.tilesheetData = JSON.parse(jsonData);
+  } catch (error) {
+    console.error("Invalid JSON data provided:", error);
   }
-  this.gameMap = map;
+};
+
+TileMap.prototype.setGameMap = function (dataGrid) {
+  this.gameMap = dataGrid;
 };
 
 TileMap.prototype.getTileData = function (x, y) {

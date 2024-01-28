@@ -35,7 +35,10 @@ function createTileSheetData(
 
   const dataStr = JSON.stringify(tilesheetData, null, 2);
   const fs = require("fs");
-  fs.writeFileSync(`${filename}TileData.json`, dataStr);
+  fs.writeFileSync(
+    `${filename.slice(0, filename.length - 4)}TileData.json`,
+    dataStr
+  );
 }
 
 function loadImages(fileNames) {

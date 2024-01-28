@@ -10,6 +10,7 @@ import {
 import { R_DEGEE_15 } from "./Tools/constants.js";
 import { BYTE_SERGE } from "./ApplicationParts/byteSerge.js";
 import { TileMap } from "./ApplicationParts/tileMap.js";
+import { DataGrid } from "./ApplicationParts/dataGrid.js";
 import { updateStat, registerUIComponents } from "./ApplicationParts/ui.js";
 import { InputController } from "./ApplicationParts/inputController.js";
 import { PhysicalVisible2DObject } from "./Objects2D/physicalVisible2DObject.js";
@@ -49,7 +50,24 @@ function main() {
   };
 
   const MAP_DATA = new TileMap();
+  const GAME_MAP = [
+    [
+      [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+      [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
+      [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
+      [9, 10, 22, 22, 22, 22, 22, 22, 10, 9],
+      [9, 10, 22, 6, 22, 22, 22, 22, 10, 9],
+      [9, 10, 22, 22, 6, 22, 22, 22, 10, 9],
+      [9, 10, 22, 22, 22, 22, 22, 22, 10, 9],
+      [9, 10, 10, 10, 10, 10, 6, 10, 10, 9],
+      [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
+      [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+    ],
+  ];
+  const GAME_SPACE = new DataGrid(10, 10, 1, 128, GAME_MAP);
+
   MAP_DATA.setTilesheet(TILE_SHEET);
+  MAP_DATA.setGameMap(GAME_SPACE);
 
   // Define a render callback function
   function renderCallback() {
