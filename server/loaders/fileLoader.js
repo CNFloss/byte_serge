@@ -51,7 +51,7 @@ const commands = {
     const regexStr = new RegExp(options.args[1]);
     findFilesInFolder(directory, regexStr).then((files) => {
       console.log(files, ": HELLO!!!");
-      files.forEach((file) => console.log(file));
+      //files.forEach((file) => console.log(file));
     });
   },
 };
