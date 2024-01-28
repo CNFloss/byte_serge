@@ -17,6 +17,27 @@ function findFilesInFolder(folderPath, pattern) {
   });
 }
 
+function createTileSheetData(
+  totalTiles,
+  cellWidth,
+  cellHeight,
+  columns,
+  rows,
+  filename
+) {
+  let tilesheetData = {};
+
+  for (let i = 0; i < totalTiles; i++) {
+    let x = (i % columns) * cellWidth;
+    let y = Math.floor(i / columns) * cellHeight;
+    tilesheetData[i] = { cell: { x: x, y: y } };
+  }
+
+  const dataStr = JSON.stringify(tilesheetData, null, 2);
+  const fs = require("fs");
+  fs.writeFileSync(`${filename}TileData.json`, dataStr);
+}
+
 function loadImages(fileNames) {
   return Promise.all(
     fileNames.map((fileName) => {
@@ -50,6 +71,23 @@ const commands = {
   close: () => {
     console.log("Close Command");
     rl.close();
+  },
+  createTileSheetDataFile: (options) => {
+    const totalTiles = options.args[0];
+    const cellWidth = options.args[1];
+    const cellHeight = options.args[2];
+    const columns = options.args[3];
+    const rows = options.args[4];
+    const filename = options.args[5];
+    createTileSheetData(
+      totalTiles,
+      cellWidth,
+      cellHeight,
+      columns,
+      rows,
+      filename
+    );
+    console.log("Success, your JSON File has been created.");
   },
   findAndCombinePNGsByPatternInFolder: (options) => {
     const directory = options.args[0];

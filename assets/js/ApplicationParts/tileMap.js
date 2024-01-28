@@ -1,4 +1,4 @@
-function TileMap() {
+export function TileMap() {
   this.mapCellSize = { width: 0, height: 0 };
   this.mapSize = { width: 0, height: 0 };
   this.tilesheet = null;

@@ -9,6 +9,7 @@ import {
 } from "./Tools/Math/math.js";
 import { R_DEGEE_15 } from "./Tools/constants.js";
 import { BYTE_SERGE } from "./ApplicationParts/byteSerge.js";
+import { TileMap } from "./ApplicationParts/tileMap.js";
 import { updateStat, registerUIComponents } from "./ApplicationParts/ui.js";
 import { InputController } from "./ApplicationParts/inputController.js";
 import { PhysicalVisible2DObject } from "./Objects2D/physicalVisible2DObject.js";
@@ -39,6 +40,16 @@ function main() {
       gravity: 9.81,
     }
   );
+
+  const TILE_SHEET = new Image();
+  TILE_SHEET.src = "assets/img/test.png";
+  TILE_SHEET.onload = function () {
+    // @ts-ignore
+    document.body.parentElement.appendChild(TILE_SHEET);
+  };
+
+  const MAP_DATA = new TileMap();
+  MAP_DATA.setTilesheet(TILE_SHEET);
 
   // Define a render callback function
   function renderCallback() {
