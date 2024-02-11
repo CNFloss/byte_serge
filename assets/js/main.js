@@ -19,6 +19,7 @@ import { Camera2D } from "./ApplicationParts/camera2D.js";
 
 // Import custom logic to plug into or extend library for app specific behavior
 import { start, stop, step, w } from "./CustomParts/handlers.js";
+import { fetchFile } from "./Tools/utillities.js";
 
 console.log("environment loaded");
 
@@ -41,43 +42,47 @@ function main() {
       gravity: 9.81,
     }
   );
-
-  const TILE_SHEET = new Image();
-  TILE_SHEET.src = "assets/img/test.png";
-  TILE_SHEET.onload = function () {
-    // @ts-ignore
-    document.body.parentElement.appendChild(TILE_SHEET);
-  };
-
   const MAP_DATA = new TileMap();
-  const GAME_MAP = [
-    [
-      [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-      [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
-      [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
-      [9, 10, 22, 22, 22, 22, 22, 22, 10, 9],
-      [9, 10, 22, 6, 22, 22, 22, 22, 10, 9],
-      [9, 10, 22, 22, 6, 22, 22, 22, 10, 9],
-      [9, 10, 22, 22, 22, 22, 22, 22, 10, 9],
-      [9, 10, 10, 10, 10, 10, 6, 10, 10, 9],
-      [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
-      [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
-    ],
-  ];
-  const GAME_SPACE = new DataGrid(10, 10, 1, 128, GAME_MAP);
+  const TILE_SHEET_DATA = fetchFile("./assets/img/testTileData.json").then(
+    (data) => {
+      MAP_DATA.setTilesheetDataFromJSON(data);
+      const TILE_SHEET = new Image();
+      TILE_SHEET.src = "assets/img/test.png";
+      TILE_SHEET.onload = function () {
+        document.body.parentElement.appendChild(TILE_SHEET);
+      };
+      const GAME_MAP = [
+        [
+          [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+          [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
+          [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
+          [9, 10, 22, 22, 22, 22, 22, 22, 10, 9],
+          [9, 10, 22, 6, 22, 22, 22, 22, 10, 9],
+          [9, 10, 22, 22, 6, 22, 22, 22, 10, 9],
+          [9, 10, 22, 22, 22, 22, 22, 22, 10, 9],
+          [9, 10, 10, 10, 10, 10, 6, 10, 10, 9],
+          [9, 10, 10, 10, 10, 10, 10, 10, 10, 9],
+          [9, 9, 9, 9, 9, 9, 9, 9, 9, 9],
+        ],
+      ];
 
-  MAP_DATA.setTilesheet(TILE_SHEET);
-  MAP_DATA.setGameMap(GAME_SPACE);
+      const GAME_SPACE = new DataGrid(10, 10, 1, 128, GAME_MAP);
+
+      MAP_DATA.setTilesheet(TILE_SHEET);
+      MAP_DATA.setGameMap(GAME_SPACE);
+    }
+  );
 
   // Define a render callback function
   function renderCallback() {
     BYTE_SERGE_APP.RENDER();
+    MAP_DATA.renderMap(BYTE_SERGE_APP.CTX);
   }
 
   const cameraConfig = {
     canvas: BYTE_SERGE_APP.CANVAS,
     renderCallback: renderCallback,
-    imageSrc: "assets/img/tree.jpeg", // Assuming you have a background image
+    imageSrc: "assets/img/tree.jpeg",
   };
 
   const CAMERA = new Camera2D(cameraConfig);

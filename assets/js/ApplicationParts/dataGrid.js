@@ -1,5 +1,9 @@
 export function DataGrid(rows, columns, depth, quadSize, mapTiles) {
   this.sections = new Array(depth);
+  this.depth = depth;
+  this.rows = rows;
+  this.columns = columns;
+  console.log(depth, rows, columns);
 
   for (let z = 0; z < depth; z++) {
     this.sections[z] = new Array(rows);
